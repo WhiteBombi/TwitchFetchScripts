@@ -1,4 +1,8 @@
 # TwitchFetchScripts
+[Download all scripts](https://github.com/WhiteBombo/TwitchFetchScripts/archive/master.zip)
+
+[Get Python 3](https://www.python.org/downloads/)
+
 Python scripts aimed to be used by streamers and channel administrators to interact with several API's to fetch useful information.
 
 ## Requirements
