@@ -1,5 +1,5 @@
 # TwitchFetchScripts
-[Download all scripts](https://github.com/WhiteBombo/TwitchFetchScripts/archive/master.zip)
+[Download .zip](https://github.com/WhiteBombo/TwitchFetchScripts/archive/master.zip)
 
 [Get Python 3](https://www.python.org/downloads/)
 
