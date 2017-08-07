@@ -3,19 +3,24 @@
 
 ### [Get Python 3](https://www.python.org/downloads/)
 
+### [Get Pillow](http://pillow.readthedocs.io/en/3.0.x/installation.html)
+
 Python scripts aimed to be used by streamers and channel administrators to interact with several API's to fetch useful information.
 
 ## Requirements
-Tested with Python 3.6.1. Needs [Python version 3](https://www.python.org/) or further.
+Tested with Python 3.6.1. Needs [Python version 3](https://www.python.org/) or further. twitchLogo.py needs [Pillow](https://python-pillow.org).
 
-## twitchLogo.py
+## Twitch profile logo fetcher - twitchLogo.py
+#### V. 1.1
+Added a thumbnail maker thing. Now uses [Pillow](https://python-pillow.org). Install instructions [here](http://pillow.readthedocs.io/en/3.0.x/installation.html).
+
 #### V. 1.0
 Fetches a Twitch user's logo from the [Kraken API](https://dev.twitch.tv/docs/) and saves it in the same directory with the script.
 
 #### How to use
 Run and follow instructions.
 
-## twitchIngests.py
+## Twitch ingest server list - twitchIngests.py
 #### V. 1.1
 Cleaned up the script of excess stuff and published Client-ID in 'cred.py' file.
 #### V. 1.0
