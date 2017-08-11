@@ -1,17 +1,21 @@
-# Script Name        :  twitchIngests.py
-# Author             :  WhiteBombo
-# Created            :  July 9th 2017
-# Last modified      :  August 4th 2017
-# Version            :  1.1
-# Description        :  Show basic information of Twitch streaming ingest servers.
+''' Fetch basic information of Twitch streaming ingest servers.
 
-import urllib.request, json, time
-from cred import *
+Script Name        :  TwitchIngests.py
+Author             :  WhiteBombo
+Created            :  July 9th 2017
+Last modified      :  August 12th 2017
+Version            :  1.2
+'''
 
-checkId()
+import json
+import time
+import urllib.request
+from Cred import CLIENT_ID, check_id
+
+check_id()
 
 # What information is being gathered
-info = [
+INFO = [
     '_id',
     'name',
     'availability',
@@ -20,20 +24,20 @@ info = [
     ]
 
 # Fetch data
-url = 'https://api.twitch.tv/kraken/ingests?client_id=' + client_id
-with urllib.request.urlopen(url) as f:
-    response = f.read()
-    decodedResponse = response.decode('utf-8')
+URL = 'https://api.twitch.tv/kraken/ingests?client_id=' + CLIENT_ID
+with urllib.request.urlopen(URL) as f:
+    RESPONSE = f.read()
+    DECODEDRESPONSE = RESPONSE.decode('utf-8')
 
 # Data structure magic
-obj = json.loads(decodedResponse)
-ingests = obj['ingests']
+OBJ = json.loads(DECODEDRESPONSE)
+INGESTS = OBJ['ingests']
 
 # Printing all the stuff
-for ii in range(0, len(ingests)):
-    ingest = ingests[ii]
-    for iii in info:
-        print(str(iii) + ': ' + str(ingest[iii]))
+for ii in range(0, len(INGESTS)):
+    INGESTS = INGESTS[ii]
+    for iii in INFO:
+        print(str(iii) + ': ' + str(INGESTS[iii]))
     print()
 
 time.sleep(1)

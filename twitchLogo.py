@@ -1,40 +1,48 @@
-# Script Name        :  twitchLogo.py
-# Author             :  WhiteBombo
-# Created            :  August 4th 2017
-# Last modified      :  August 7th 2017
-# Version            :  1.1
-# Description        :  Fetch a profile picture of a Twitch account.
+''' Fetch a profile picture of a Twitch account to the local directory.
 
-import urllib.request, json, time
+Script Name        :  TwitchLogo.py
+Author             :  WhiteBombo
+Created            :  August 4th 2017
+Last modified      :  August 12th 2017
+Version            :  1.2
+'''
+
+import json
+import time
+import urllib.request
 from PIL import Image
-from cred import *
+from Cred import CLIENT_ID, check_id
 
-checkId()
+check_id()
 
-searchName = str(input('Enter a username: '))
-thumbnailSize = int(input('Enter final image size in pixels (64 by default): ') or 64)
-pictureName = 'profile' + '.png'    # What would you like to call the picture file?
+SEARCHNAME = str(input('Enter a username: '))
+THUMBNAILSIZE = int(input('Enter final image size in pixels (64 by default): ') or 64)
+PICTURENAME = 'profile' + '.png'    # Set name of the picture file?
 
 # Fetch info from the Kraken API
-url = 'https://api.twitch.tv/kraken/users/{}?client_id={}'.format(searchName, client_id)
+URL = 'https://api.twitch.tv/kraken/users/{}?client_id={}'.format(SEARCHNAME, CLIENT_ID)
 try:
-    with urllib.request.urlopen(url) as f:
-        response = f.read()
-        decodedResponse = response.decode('utf-8')
-    obj = json.loads(decodedResponse)
+    with urllib.request.urlopen(URL) as f:
+        RESPONSE = f.read()
+        DECODEDRESPONSE = RESPONSE.decode('utf-8')
+    OBJ = json.loads(DECODEDRESPONSE)
 
-    # Save the picture from the logo url to a file.
-    urllib.request.urlretrieve(obj['logo'], pictureName)
+    # Save the picture from the logo URL to a file.
+    urllib.request.urlretrieve(OBJ['logo'], PICTURENAME)
 
     # Make a thumbnail
-    pic = Image.open(pictureName)
-    pic.thumbnail((thumbnailSize, thumbnailSize))
-    pic.save(pictureName, "PNG")
+    PIC = Image.open(PICTURENAME)
+    PIC.thumbnail((THUMBNAILSIZE, THUMBNAILSIZE))
+    PIC.save(PICTURENAME, "PNG")
 
-except:
-    print(searchName.capitalize(), 'doesn\'t have a profile picture on Twitch.')
+except TypeError:
+    print("{} doesn't have a profile picture on Twitch".format(SEARCHNAME.capitalize()))
+    exit()
+
+except urllib.error.HTTPError:
+    print("The account '{}' couldn't be found.".format(SEARCHNAME.capitalize()))
     exit()
 
 # Exit
-print('Profile picture for', obj['display_name'], 'has been fetched to profile.png.')
 time.sleep(1)
+input('Profile picture for {} has been fetched to profile.png.'.format(OBJ['display_name']))
